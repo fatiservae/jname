@@ -2,9 +2,23 @@
 
 Renomeador estupidamente rápido simples para Linux.
 
+## Instalação
+
+```
+$ git clone 'https://github.com/EstalineCCCP/jname'
+
+$ cd jname
+
+$ cargo build --release
+
+$ mv -t /usr/local/sbin/ ./target/release/normalizador jname
+```
+
 ## Uso
+
+
 ``` 
-jname -args
+jname -args "arquivo1.ext" "arquivo2.ext"
 ``` 
 
 args:
