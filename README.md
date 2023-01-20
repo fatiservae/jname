@@ -29,10 +29,13 @@ arquivo-com-nome-estupido.pdf
 
 ## Racional
 Pessoas nomeiam arquivos _estupidamente_. 
+
 Ajusta arquivos em batch.
+
 Extensível e modular.
 
 ## Versões
+
 1.0.0 - Funcional.
 1.0.1 - trim_end() da função finaliza
 Major.Minor.Patch
