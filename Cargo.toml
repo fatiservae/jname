@@ -1,0 +1,20 @@
+[package]
+name = "Jname"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+regex = "1.4.2"
+unicode-normalization = "0.1.12"
+diacritics = "0.1.3"
+
+[[bin]]
+name = "normalizador"
+path = "src/main.rs"
+
+[profile.release]
+strip = true  # Automatically strip symbols from the binary.
+lto = true
+codegen-units = 1
