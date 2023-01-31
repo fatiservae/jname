@@ -70,12 +70,12 @@ fn main() {
     linhas = linhas.into_iter()
                     .map(|x| if d == true {remove_diacritics(&x)}else{x})
                     .map(|x| if l == true {minusculas(&x)}else{x})
-                    .map(|x| repetidos(&x, r))
                     .map(|x| estranhos(&x, e))
                     .map(|x| espacos(&x, s))
                     .map(|x| pontos(&x, p))
                     .map(|x| separacao(&x))
                     .map(|x| finaliza(&x))
+                    .map(|x| repetidos(&x, r))
                     .collect();
     for linha in linhas {
         println!("{}", linha);
