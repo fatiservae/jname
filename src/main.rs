@@ -42,11 +42,18 @@ fn finaliza(input: &str) -> String { // conserta finais de .- ou -.
 fn minusculas(input: &str) -> String {
     input.to_lowercase().to_string()
 }
+fn printaveis(input: &str) -> String {
+    let mut output: String = String::new();
+    for c in input.chars(){
+        if c.is_ascii() && (c == '\t' || c == '\n' || c == '\r' || (c as u8) >= 0x20 && (c as u8) <= 0x7E) {output.push(c)};
+    }
+    return output.to_string()
+}
 
 fn main() {
     let mut linhas: Vec<String> = entrada();
-    let (mut d, mut s, mut r, mut e, mut p, mut l, mut x, mut nada) = 
-        (false, false, false, false, false, false, false, false); 
+    let (mut u, mut d, mut s, mut r, mut e, mut p, mut l, mut x, mut nada) = 
+        (false, false, false, false, false, false, false, false, false); 
     let args: Vec<String> = env::args().collect();
     if args.len() < 2 {nada = true};
     if nada == false {
@@ -57,6 +64,7 @@ fn main() {
        if args[1].contains("e") {e = true};
        if args[1].contains("l") {l = true};
        if args[1].contains("x") {x = true};
+       if args[1].contains("u") {u = true};
     };
     linhas = linhas.into_iter()
                     .map(|linha| if e == true {estranhos(&linha)}else{linha})
@@ -66,6 +74,7 @@ fn main() {
                     .map(|linha| if r == true {repetidos(&linha)}else{linha})
                     .map(|linha| if d == true {remove_diacritics(&linha)}else{linha})
                     .map(|linha| if l == true {minusculas(&linha)}else{linha})
+                    .map(|linha| if u == true {printaveis(&linha)}else{linha})
                     .map(|linha| separacao(&linha))
                     .map(|linha| finaliza(&linha))
                     .collect();
