@@ -24,7 +24,7 @@ fn separacao(input: &str) -> String { // conserta repeticoes de .- ou -.
     let re = Regex::new(r"[\.-][\.-]").unwrap();
     re.replace_all(input, "-").to_string()
 }
-fn separador_maiusculas(input: &str) -> String {
+fn separador_camel_case(input: &str) -> String {
     let mut result = String::new();
     let input_vec: Vec<char> = input.chars().collect();
     result.push(input_vec[0]);
@@ -49,11 +49,38 @@ fn printaveis(input: &str) -> String {
     }
     return output.to_string()
 }
+fn camel_case(input: &str) -> String {
+    let entrada: Vec<char> = input.chars().collect();
+    let mut saida: Vec<char> = Vec::new();
+    saida.push(entrada[0].to_uppercase().to_string().chars().next().unwrap());
+    let mut last_char: Option<char> = None;
+    for c in &entrada{
+        //  * o last_char recebe um valor se existir e
+        // caso esse valor seja um dos mencionados, 
+        // o bloco de código com push e uppercase é
+        // executado.
+        //  * caso last_char exista mas não seja um dos
+        // mencionados, faz push sem uppercase.
+        //  * se não existir o bloco if let nem é executado.
+        if let Some(last) = last_char {
+            if last == ' ' || last == ',' || last == '-' || last == '.' || last == '_' {
+                saida.push(c.to_uppercase().to_string().chars().next().unwrap());
+            }else{
+                saida.push(c.to_string().chars().next().unwrap());
+            }
+        }
+        last_char = Some(*c); // carrega o char atual como "last"
+                              // na próxima. Na primeira vez 
+                              // last_char é None
+        }
+
+    saida.iter().collect::<String>()
+}
 
 fn main() {
     let mut linhas: Vec<String> = entrada();
-    let (mut u, mut d, mut s, mut r, mut e, mut p, mut l, mut x, mut nada) = 
-        (false, false, false, false, false, false, false, false, false); 
+    let (mut m, mut u, mut d, mut s, mut r, mut e, mut p, mut l, mut x, mut nada) = 
+        (false, false, false, false, false, false, false, false, false, false); 
     let args: Vec<String> = env::args().collect();
     if args.len() < 2 {nada = true};
     if nada == false {
@@ -65,14 +92,16 @@ fn main() {
        if args[1].contains("l") {l = true};
        if args[1].contains("x") {x = true};
        if args[1].contains("u") {u = true};
+       if args[1].contains("m") {m = true};
     };
     linhas = linhas.into_iter()
                     .map(|linha| if e == true {estranhos(&linha)}else{linha})
                     .map(|linha| if s == true {espacos(&linha)}else{linha})
                     .map(|linha| if p == true {pontos(&linha)}else{linha})
-                    .map(|linha| if x == true {separador_maiusculas(&linha)}else{linha})
+                    .map(|linha| if x == true {separador_camel_case(&linha)}else{linha})
                     .map(|linha| if r == true {repetidos(&linha)}else{linha})
                     .map(|linha| if d == true {remove_diacritics(&linha)}else{linha})
+                    .map(|linha| if m == true {camel_case(&linha)}else{linha})
                     .map(|linha| if l == true {minusculas(&linha)}else{linha})
                     .map(|linha| if u == true {printaveis(&linha)}else{linha})
                     .map(|linha| separacao(&linha))

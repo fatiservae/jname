@@ -5,7 +5,7 @@
 # Jefferson T.
 
 helper() {
-	printf 'Jname - um cleaner de files estúpido!\nTelegrão:StalinCCCP @ 2023\n\nO que cada opção trabalha:\n-h\tAjuda.\n-l\tMinúsculas.\n-r\tRepetidos.\n-e\tEstranhos.\n-d\tDiacríticos.\n-x\tCaptaliza.\n-s\tEspaços.\n-p\tPontos.\n-u\tNão printáveis.\n\nEste software é livre.\nJefferson T.\n'
+	printf 'Jname - um cleaner de filenames estúpido!\nTelegrão:StalinCCCP @ 2023\n\nFlag\tOpção\n\n-h\tAjuda.\n-l\tTransforma para minúsculas.\n-r\tElimina separadores repetidos.\n-e\tElimina caracters estranhos.\n-m\tTransforma em CamelCase.\n-x\tSepara CamelCase.\n-d\tElimina diacríticos.\n-s\tElimina espaços.\n-p\tElimina pontos.\n-u\tElimina não printáveis.\n\nEste software é livre.\nJefferson T.\n'
 	exit
 }
 
