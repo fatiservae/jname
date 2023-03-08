@@ -3,9 +3,15 @@
 # Telegrão: @StalinCCCP 
 # @2023
 # Jefferson T.
-IFS=$'\n'
 
+helper() {
+	printf 'Jname - um cleaner de files estúpido!\nTelegrão:StalinCCCP @ 2023\n\nO que cada opção trabalha:\n-h\tAjuda.\n-l\tMinúsculas.\n-r\tRepetidos.\n-e\tEstranhos.\n-d\tDiacríticos.\n-x\tCaptaliza.\n-s\tEspaços.\n-p\tPontos.\n-u\tNão printáveis.\n\nEste software é livre.\nJefferson T.\n'
+	exit
+}
+
+IFS=$'\n'
 if [[ "$1" =~ ^-.* ]]; then
+	[[ "$1" == '-h' ]] && helper
 	argumentos="$(echo "$1"|cut -c 2-)"
 	arquivos=("${@:2}")
 else 
