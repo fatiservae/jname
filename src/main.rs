@@ -61,7 +61,7 @@ fn camel_case(input: &str) -> String {
         // executado.
         //  * caso last_char exista mas não seja um dos
         // mencionados, faz push sem uppercase.
-        //  * se não existir o bloco if let nem é executado.
+        //  * se não existir, o bloco if let nem é executado.
         if let Some(last) = last_char {
             if last == ' ' || last == ',' || last == '-' || last == '.' || last == '_' {
                 saida.push(c.to_uppercase().to_string().chars().next().unwrap());
@@ -76,6 +76,34 @@ fn camel_case(input: &str) -> String {
 
     saida.iter().collect::<String>()
 }
+
+fn comuns(input: &str) -> String {
+    let mut output = String::new();
+    let mut last_separator = 0;
+
+    for (i, c) in input.char_indices() {
+        if c == ' ' || c == '-' || c == '_' || c == ',' {
+            let slice = &input[last_separator..i];
+            let comum = &slice.to_lowercase();
+            output.push_str(match slice.len() {
+                1..=3 => comum,
+                _ => slice,
+            });
+            output.push(c);
+            last_separator = i + 1;
+        }
+    }
+
+    let slice = &input[last_separator..];
+    let comum = &slice.to_lowercase();
+    output.push_str(match slice.len() {
+        1..=3 => comum,
+        _ => slice,
+    });
+
+    output
+}
+
 
 fn main() {
     let mut linhas: Vec<String> = entrada();
@@ -102,6 +130,7 @@ fn main() {
                     .map(|linha| if r == true {repetidos(&linha)}else{linha})
                     .map(|linha| if d == true {remove_diacritics(&linha)}else{linha})
                     .map(|linha| if m == true {camel_case(&linha)}else{linha})
+                    .map(|linha| if m == true {comuns(&linha)}else{linha})
                     .map(|linha| if l == true {minusculas(&linha)}else{linha})
                     .map(|linha| if u == true {printaveis(&linha)}else{linha})
                     .map(|linha| separacao(&linha))
