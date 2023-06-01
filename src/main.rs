@@ -5,8 +5,8 @@ use std::*;
 use entrada::*;
 use regex::Regex;
 fn repetidos(input: &str) -> String {
-    let re = Regex::new(r"[\.-]{1,10}").unwrap();
-    re.replace_all(input, "-").to_string()
+    let re = Regex::new(r"([\. -]){1,10}").unwrap(); // r"() cria um grupo captura
+    re.replace_all(input, "$1").to_string()
 }
 fn estranhos(input: &str) -> String {
     let re = Regex::new(r"[^\w \.-]").unwrap();
