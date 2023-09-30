@@ -1,4 +1,4 @@
-# JNAME 1.0.1  - rename for the better
+# JNAME 1.1.0  - rename for the better
 
 Renomeador estupidamente rápido simples para Linux.
 
