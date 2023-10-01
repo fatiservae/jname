@@ -22,6 +22,11 @@ chmod 700 "$COMMANDS"	# só de segurança
 
 if [ "$1" == "--help" ] || [ "$1" == '-h' ]; then	help && exit; fi
 
+function limpeza
+{
+		rm -f "$COMMANDS" "$ORIG_NAMES" "$NEW_NAMES" "$TEMP_NAMES"
+}
+
 function renomeadora
 {
 		cp "$ORIG_NAMES" "$NEW_NAMES"
@@ -37,6 +42,7 @@ function renomeadora
 		if [ "$(< "$ORIG_NAMES")" == "$(< "$NEW_NAMES")" ] 
 			then
 				echo "Arquivos inalterados."
+				limpeza
 				echo "Saindo..."
 				exit
 		fi
@@ -62,9 +68,8 @@ function renomeadora
 		{ paste -d' ' "$TEMP_NAMES" "$NEW_NAMES" | sed 's/^/mv /' | grep -E -v 'mv (".*") \1' > "$COMMANDS"
 		bash -x "$COMMANDS"
 		}
-		
-		# limpeza
-		rm -f "$COMMANDS" "$ORIG_NAMES" "$NEW_NAMES" "$TEMP_NAMES"
+	
+		limpeza
 }
 
 if [ $# -eq 0 ]; then { # em todos arquivos do diretório
