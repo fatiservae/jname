@@ -1,0 +1,1 @@
+window.ALL_CRATES = ["aho_corasick","diacritics","lib","memchr","normalizador","regex","regex_syntax","tinyvec","tinyvec_macros","unicode_normalization"];

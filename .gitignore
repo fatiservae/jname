@@ -1,2 +1,4 @@
-/target
 /area-teste
+/target/debug/
+/target/release/
+/target/CACHEDIR.TAG
