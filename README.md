@@ -1,8 +1,9 @@
-# JNAME 1.1.0  - rename for the better
+# JNAME 0.1.1  - rename for the better
 
 Renomeador estupidamente rápido simples para Linux.
 
 ## Instalação
+Um binário de ajuste chamado `normalizador` é criado e pode ser usado em manipulação de quaisquer `strings`.
 
 ```
 $ git clone 'https://github.com/EstalineCCCP/jname'

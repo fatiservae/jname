@@ -1,11 +1,9 @@
-use {    std::io::{self},
-};
+use std::io::{self};
 
-/* Entrada como stdin */
 pub fn entrada() -> Vec<String> {
    io::stdin()
         .lines()
-        .map(|line| line.expect("🤪 Não transformou em linhas!"))
+        .map(|line| line.expect("Não transformou em linhas!"))
         .collect()
 }
 
