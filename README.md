@@ -18,18 +18,18 @@ $ mv -t /usr/local/sbin/ ./target/release/normalizador jname.sh jrename.sh
 ## Uso
 Chame quantos arquivos quiser para serem renomeados em `vim`:
 ```
-jrename.sh "arquivo1+TODO_erRado.pdf" "n-esimo-arquivo---mal.nomeado.ext"
+$ jrename.sh "arquivo1+TODO_erRado.pdf" "n-esimo-arquivo---mal.nomeado.ext"
 ```
 Após editar os nomes, salve com `:wq`.
 
 Para detalhes:
 ```
-jrename..sh --help
+$ jrename.sh --help
 ```
 
 Ainda, diretamente na linha de comando, faça ajustes rápidos e em **batch**:
 ``` 
-jname.sh -args "arquivo1.ext" "arquivo2.ext"
+$ jname.sh -args "arquivo1.ext" "arquivo2.ext"
 ``` 
 
 Argumentos possíveis:
