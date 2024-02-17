@@ -19,7 +19,7 @@ pub fn pontos(input: &str) -> String {
     let re = Regex::new(r"\.").unwrap();
     re.replace_all(input, "-").to_string()
 }
-///Elimina separações repetidas de ponto ou traços.
+///Elimina separações repetidas de ponto e traços.
 ///
 ///TODO: Generalizar o que é uma separação.
 pub fn separacao(input: &str) -> String { 
@@ -74,42 +74,40 @@ pub fn printaveis(input: &str) -> String {
 pub fn camel_case(input: &str) -> String {
     let entrada: Vec<char> = input.chars().collect();
     let mut saida: Vec<char> = Vec::new();
-    saida.push(entrada[0]
-                .to_uppercase()
-                .to_string()
-                .chars()
-                .next()
-                .unwrap());
+    saida.push(entrada[0].to_ascii_uppercase());
     let mut last_char: Option<char> = None;
     for c in &entrada{
-        //  * o last_char recebe um valor se existir e
+        // O last_char recebe um valor se existir e
         // caso esse valor seja um dos mencionados, 
         // o bloco de código com push e uppercase é
         // executado.
-        //  * caso last_char exista mas não seja um dos
+        // Caso last_char exista mas não seja um dos
         // mencionados, faz push sem uppercase.
-        //  * se não existir, o bloco if let nem é executado.
+        // Se não existir, o bloco if let nem é executado.
         if let Some(last) = last_char {
             match last {
             ' ' | ',' | '-' | '.' | '_' =>  {
-                saida.push(c.to_uppercase()
-                            .to_string()
-                            .chars()
-                            .next()
-                            .unwrap()); // lidar com o erro
+                saida.push(c.to_ascii_uppercase())
             },
             _ => {
                 saida.push(c.to_string().chars().next().unwrap());
                 }
             };
+        }
         last_char = Some(*c); // carrega o char atual como "last"
                               // na próxima. Na primeira vez 
                               // last_char é None
-        }
     }
     saida.iter().collect::<String>()
 }
 
+pub fn capt_primeira(input: &str) -> String {
+    let mut chars = input.chars().collect::<Vec<char>>();
+    chars[0] = chars[0].to_ascii_uppercase();
+    chars[1..].iter_mut().for_each(|c| *c = c.to_ascii_lowercase());
+    chars.into_iter().collect()
+}
+    
 ///Opera transformação para lowercase em palavras de até três
 ///caracteres.
 ///
