@@ -50,25 +50,29 @@ pub fn minusculas(input: &str) -> String {
 }
 ///Remove caracters não printáveis.
 pub fn printaveis(input: &str) -> String {
-    let mut output: String = String::new();
-    for c in input.chars(){
-        match c {
-            '\t' | '\n' | '\r' => output.push(c),
-            _ if (c as u8) >= 0x20 => output.push(c),
-            _ if (c as u8) <= 0x7E => output.push(c),
-            _ if c.is_ascii() => output.push(c),
-            _ => {}
-        };
-        //output.push(c)
-    };
+    input
+    .chars()  
+    .filter(|&c| c.is_ascii_graphic() || c.is_ascii_whitespace() || c.is_alphabetic()) 
+    .collect()  
+    //let mut output: String = String::new();
     //for c in input.chars(){
-    //    if c.is_ascii() && 
-    //    (c == '\t' || c == '\n' || c == '\r' || (c as u8) >= 0x20 && 
-    //    (c as u8) <= 0x7E) {
-    //        output.push(c)
+    //    match c {
+    //        '\t' | '\n' | '\r' => output.push(c),
+    //        _ if (c as u8) >= 0x20 => output.push(c),
+    //        _ if (c as u8) <= 0x7E => output.push(c),
+    //        _ if c.is_ascii() => output.push(c),
+    //        _ => {}
     //    };
-    //}
-    output.to_string()
+    //    //output.push(c)
+    //};
+    ////for c in input.chars(){
+    ////    if c.is_ascii() && 
+    ////    (c == '\t' || c == '\n' || c == '\r' || (c as u8) >= 0x20 && 
+    ////    (c as u8) <= 0x7E) {
+    ////        output.push(c)
+    ////    };
+    ////}
+    //output.to_string()
 }
 ///Transforma em CamelCase.
 pub fn camel_case(input: &str) -> String {
